@@ -1,8 +1,14 @@
 <?php
 include("function.php");
+$in_object = new operation();
 
-$in_obj = new crud_operation();
+$message = "";
+if (isset($_POST['in_submit'])) {
+    $message = $in_object->insert($_POST);
+}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,13 +22,18 @@ $in_obj = new crud_operation();
 
 <body>
     <main>
-        <h1>CRUD Operation</h1><br>
-        <?php if (isset($sms)) echo $sms; ?>
-        <from action="" method="POST">
-            <input type="text" name='in_name' placeholder="Enter your Name"><br>
-            <input type="int" name="in_age" placeholder="Enter your Age"><br>
-            <input type="submit" name="in_submit" value="Enter your data">
-        </from>
+        <div id="in_main_div">
+            <h1>CRUD Operation</h1>
+            <p><?php if (isset($message)) echo $message ?></p>
+            <form action="" method="POST">
+                <label for="in_name"> <b>Name :</b> </label>
+                <input type="text" name='in_name' placeholder="Enter your Name"><br>
+                <label for="in_age"> <b>Age :&nbsp;&nbsp;&nbsp;</b> </label>
+                <input type="int" name="in_age" placeholder="Enter your Age"><br>
+                <label for="in_submit"> <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> </label>
+                <input type="submit" name="in_submit" value="Enter your data">
+            </form>
+        </div>
     </main>
 </body>
 
